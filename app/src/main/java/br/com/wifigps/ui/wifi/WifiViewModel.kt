@@ -1,15 +1,13 @@
-package br.com.wifigps.ui.notifications
+package br.com.wifigps.ui.wifi
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import br.com.wifigps.CSVHelper
 import br.com.wifigps.WifiData
 
-class NotificationsViewModel(app : Application) : AndroidViewModel(app) {
+class WifiViewModel(app : Application) : AndroidViewModel(app) {
 
     private val context = getApplication<Application>().applicationContext
     private val _dataList = MutableLiveData<List<WifiData>>()
@@ -20,7 +18,7 @@ class NotificationsViewModel(app : Application) : AndroidViewModel(app) {
 
     init {
         _dataList.value = emptyList()
-        _scanCounter.value = 0
+        _scanCounter.value = -1
     }
 
 

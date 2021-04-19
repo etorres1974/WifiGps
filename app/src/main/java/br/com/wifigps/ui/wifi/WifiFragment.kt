@@ -1,4 +1,4 @@
-package br.com.wifigps.ui.notifications
+package br.com.wifigps.ui.wifi
 
 import android.content.Intent
 import android.net.Uri
@@ -19,9 +19,9 @@ import br.com.wifigps.WifiReaderService
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class NotificationsFragment : Fragment() {
+class WifiFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    private lateinit var wifiViewModel: WifiViewModel
 
     private lateinit var wifiReaderService: WifiReaderService
 
@@ -30,9 +30,9 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
+        wifiViewModel =
+            ViewModelProvider(this).get(WifiViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_wifi, container, false)
         wifiReaderService = WifiReaderService(requireContext())
         setupUi(root)
         subscribeUi(root)
@@ -47,20 +47,20 @@ class NotificationsFragment : Fragment() {
     private fun subscribeUi(root: View) {
         wifiReaderService.dataList.observe(
             viewLifecycleOwner,
-            notificationsViewModel::updateWifiData
+            wifiViewModel::updateWifiData
         )
-        notificationsViewModel.dataList.observe(viewLifecycleOwner) {
+        wifiViewModel.dataList.observe(viewLifecycleOwner) {
             root.findViewById<TableLayout>(R.id.table_layout).setupTable(it)
             root.findViewById<TextView>(R.id.text_view_rows_counter).setupRowsCounter(it)
         }
-        notificationsViewModel.scanCounter.observe(viewLifecycleOwner) {
+        wifiViewModel.scanCounter.observe(viewLifecycleOwner) {
             root.findViewById<TextView>(R.id.text_view_scan_counter).setupScanCounter(it)
         }
     }
 
     private fun Button.setupExportButton() {
         setOnClickListener {
-            notificationsViewModel.exportCsv()
+            wifiViewModel.exportCsv()
             CSVHelper.getExportUri(context)?.let { exportIntent(it) }
         }
     }
