@@ -11,8 +11,8 @@ android {
         applicationId "br.com.wifigps"
         minSdkVersion 29
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
