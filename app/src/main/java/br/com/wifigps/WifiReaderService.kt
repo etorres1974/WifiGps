@@ -35,6 +35,16 @@ class WifiReaderService(context: Context) {
         context.registerReceiver(wifiScanReceiver, intentFilter)
     }
 
+    @Suppress("DEPRECATION")
+    fun startScan(): Boolean =
+        try {
+            wifiManager.startScan()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+
+        }
+
     private fun scanSuccess() {
         val results = wifiManager.scanResults
         val data = results.map { WifiData(it) }

@@ -3,4 +3,5 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_wifi">Wifi</string>
+    <string name="permissions">This app needs to use location for wifi and write external storage for exporting a CSV file. WIthout permissions you will be missing all the fun!</string>
 </resources>

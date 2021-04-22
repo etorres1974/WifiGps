@@ -41,6 +41,9 @@ class WifiFragment : Fragment() {
 
     private fun setupUi(root: View) {
         root.findViewById<Button>(R.id.button_export_csv).setupExportButton()
+        root.findViewById<Button>(R.id.button_export_csv).setOnClickListener {
+            wifiReaderService.startScan()
+        }
 
     }
 
